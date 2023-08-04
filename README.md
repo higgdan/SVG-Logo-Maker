@@ -20,7 +20,9 @@ Prior to open, install the relevant node modules, particularly Inquirer and Jest
 ## Usage
 Application code is run by typing `node index` into the command line. Follow the prompts, choosing a colour for the logo and text, and the three character text input. The generated logo.svg file is found in the 'output' folder.
 
-An example of the application in action can be viewed [here]().
+An example of the application in action can be viewed below.
+
+https://github.com/higgdan/SVG-Logo-Maker/assets/132875476/20f069f8-52d3-4231-811e-68e13382509c
 
 ## License
 This application is covered under the MIT License.
