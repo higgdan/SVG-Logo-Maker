@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+const shape = require("./lib/shapes.js");
 
 inquirer
   .prompt([
@@ -18,7 +18,7 @@ inquirer
       type: 'list',
       name: 'svgLogoShape',
       message: 'What shape is the logo?',
-      choices: ['circle', 'square', 'triangle']
+      choices: ['Circle', 'Square', 'Triangle']
 
     },
     {
@@ -28,6 +28,17 @@ inquirer
     }
   ])
   .then((answers) => {
-    console.log(answers);
-    console.log("Generated logo.svg in output folder");
-  });
+    if (answers.svgLogoShape === "Circle") {
+      return new shape.Circle(answers.svgLogoColour, answers.svgTextColour, answers.svgTextChar)
+    }
+    if (answers.svgLogoShape === "Square") {
+      return new shape.Square(answers.svgLogoColour, answers.svgTextColour, answers.svgTextChar)
+    }
+    if (answers.svgLogoShape === "Triangle") {
+      return new shape.Triangle(answers.svgLogoColour, answers.svgTextColour, answers.svgTextChar)
+    }
+  })
+  .then((shape) => {
+    fs.writeFile('./output/logo.svg', shape.render(), (err) =>
+      err ? console.log(err) : console.log("Generated logo.svg in output folder"))
+  })
