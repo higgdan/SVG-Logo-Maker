@@ -1,7 +1,10 @@
+// import required packages and dependancies
 const inquirer = require('inquirer');
 const fs = require('fs');
 const shape = require("./lib/shapes.js");
 
+
+// define question prompts
 inquirer
   .prompt([
     {
@@ -28,6 +31,7 @@ inquirer
     }
   ])
   .then((answers) => {
+// conditionals to determine which class constructor to invoke
     if (answers.svgLogoShape === "Circle") {
       return new shape.Circle(answers.svgLogoColour, answers.svgTextColour, answers.svgTextChar)
     }
@@ -39,6 +43,7 @@ inquirer
     }
   })
   .then((shape) => {
+// write file to output folder, using the spapes' render method to populate the text to write to file
     fs.writeFile('./output/logo.svg', shape.render(), (err) =>
       err ? console.log(err) : console.log("Generated logo.svg in output folder"))
   })
